@@ -6,7 +6,7 @@ attrdict
 beautifulsoup4
 cloudscrape
 feedparser
-google-api-python-client
+google-api-python-client==2.24.0
 google-auth-httplib2
 google-auth-oauthlib
 gunicorn
@@ -14,7 +14,6 @@ html-telegraph-poster
 js2py
 git+https://github.com/jusidama18/lk21
 lxml
-natsort
 Pillow
 psutil
 psycopg2-binary
@@ -35,4 +34,3 @@ TgCrypto
 torrentool==1.1.0
 urllib3
 youtube_dl
-yt-dlp
