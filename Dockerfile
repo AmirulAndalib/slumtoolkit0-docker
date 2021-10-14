@@ -11,7 +11,7 @@ RUN apt-get -y update && apt-get -y upgrade && \
         autoconf libtool libcurl4-openssl-dev qt5-default \
         libsodium-dev libssl-dev libcrypto++-dev libc-ares-dev \
         libsqlite3-dev libfreeimage-dev swig libboost-all-dev \
-        libpthread-stubs0-dev zlib1g-dev libpq-dev libffi-dev
+        libpthread-stubs0-dev zlib1g-dev
         
 # Installing Mega SDK Python Binding
 ENV MEGA_SDK_VERSION="3.9.7"
@@ -26,6 +26,9 @@ RUN git clone https://github.com/meganz/sdk.git --depth=1 -b v$MEGA_SDK_VERSION 
 # Requirements Mirror Bot
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
+COPY extract /usr/local/bin
+COPY pextract /usr/local/bin
+RUN chmod +x /usr/local/bin/extract && chmod +x /usr/local/bin/pextract
 
 RUN apt-get -y update && apt-get -y upgrade && apt-get -y autoremove && apt-get -y autoclean
 
