@@ -20,6 +20,7 @@ psycopg2-binary
 pybase64
 pyrogram
 pyshorteners
+python-dateutil
 python-dotenv
 python-magic
 python-telegram-bot
