@@ -1,6 +1,18 @@
-FROM ubuntu:20.04
+FROM ubuntu:latest
+
+WORKDIR /usr/src/slam
+RUN chmod 777 /usr/src/slam
 
 ENV DEBIAN_FRONTEND="noninteractive"
+
+ENV TARGETPLATFORM=${TARGETPLATFORM:-linux/amd64}
+ENV MEGA_SDK_VERSION="3.9.7"
+
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+
+WORKDIR /usr/src/slam
+RUN chmod 777 /usr/src/slam
 
 RUN apt-get -y update && apt-get -y upgrade && \
         apt-get install -y software-properties-common && \
@@ -29,8 +41,6 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 RUN apt-get -y update && apt-get -y upgrade && apt-get -y autoremove && apt-get -y autoclean
 
-WORKDIR /usr/src/app
-RUN chmod 777 /usr/src/app
 
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
