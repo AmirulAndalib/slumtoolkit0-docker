@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:21.10
 
 WORKDIR /usr/src/slam
 RUN chmod 777 /usr/src/slam
