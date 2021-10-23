@@ -35,4 +35,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: amirulandalib/slumtoolkit-docker:${{ env.TAG }}
+          tags: amirulandalib/slumtoolkit0-docker:${{ env.TAG }}
