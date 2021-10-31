@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM debian:latest
 
 WORKDIR /usr/src/slam
 RUN chmod 777 /usr/src/slam
@@ -14,9 +14,9 @@ ARG BUILDPLATFORM
 WORKDIR /usr/src/slam
 RUN chmod 777 /usr/src/slam
 
-RUN apt-get -y update && apt-get -y upgrade && \
+RUN apt-add-repository non-free && \
+        apt-get -y update && apt-get -y upgrade && \
         apt-get install -y software-properties-common && \
-        add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && \
         apt-get install -y python3 python3-pip python3-lxml aria2 \
         qbittorrent-nox tzdata p7zip-full p7zip-rar xz-utils wget curl pv jq \
         ffmpeg locales unzip neofetch mediainfo git make g++ gcc automake \
