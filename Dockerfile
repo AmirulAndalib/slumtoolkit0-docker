@@ -14,7 +14,8 @@ ARG BUILDPLATFORM
 WORKDIR /usr/src/slam
 RUN chmod 777 /usr/src/slam
 
-RUN apt-add-repository non-free && \
+RUN RUN apt-get -qq update && \    
+        apt-add-repository non-free && \
         apt-get -y update && apt-get -y upgrade && \
         apt-get install -y software-properties-common && \
         apt-get install -y python3 python3-pip python3-lxml aria2 \
