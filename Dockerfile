@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
-WORKDIR /usr/src/slam
-RUN chmod 777 /usr/src/slam
+WORKDIR /usr/src/appx
+RUN chmod 777 /usr/src/appx
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
@@ -11,8 +11,8 @@ ENV MEGA_SDK_VERSION="3.9.7"
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 
-WORKDIR /usr/src/slam
-RUN chmod 777 /usr/src/slam
+WORKDIR /usr/src/appx
+RUN chmod 777 /usr/src/appx
 
 RUN apt-get -y update && apt-get -y upgrade && \
         apt-get install -y software-properties-common && \
