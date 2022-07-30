@@ -10,7 +10,7 @@ on:
 
     paths:
 
-      - "Dockerfile Base/Dockerfile"
+      - "Dockerfile"
 
     tags:
 
