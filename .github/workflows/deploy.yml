@@ -1,38 +1,71 @@
-name: Docker
+name: ghcr.io
 
 on:
+
   push:
+
     branches:
+
       - master
+
     paths:
-      - "Dockerfile"     
+
+      - "Dockerfile Base/Dockerfile"
+
     tags:
+
       - v*
+
   schedule:
-    - cron: "0 * * * *"
+
+    - cron: "0 0 * * 0"
+
+
+
+  workflow_dispatch:
+
+env:
+
+  IMAGE: ghcr.io/amirulandalib/mltb-ubuntu-dev
 
 jobs:
+
   build:
-    runs-on: ubuntu-latest
+
+    runs-on: ubuntu-22.04
+
     steps:
+
       - uses: actions/checkout@v2
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1.10.0
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      - if: startsWith(github.ref, 'refs/heads/master')	
+      - name: update packages
+
+        run: sudo su && sudo apt-get update -y && sudo apt-get upgrade -y
+
+      - name: Login to ghcr.io registry
+
+        run: docker login https://ghcr.io -u token -p ${{ secrets.GITHUB_TOKEN }}
+
+      - if: startsWith(github.ref, 'refs/heads/master')
+
         run: echo "TAG=latest" >> $GITHUB_ENV
 
-      - if: startsWith(github.ref, 'refs/tags')	
+      - if: startsWith(github.ref, 'refs/tags')
+
         run: echo "TAG=$(git describe --tags)" >> $GITHUB_ENV
 
-      - name: Build and publish to Docker Hub
+      - name: Build & Push
+
         uses: docker/build-push-action@v2.7.0
+
         with:
+
           context: ./
-          file: ./Dockerfile
-          platforms: linux/amd64
+
+          file: ./Dockerfile Base/Dockerfile
+
           push: true
-          tags: amirulandalib/slamtoolkitx-docker:${{ env.TAG }}
+
+          platforms: linux/amd64
+
+          tags: ghcr.io/amirulandalib/mltb-ubuntu-dev:latest
