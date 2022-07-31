@@ -62,7 +62,7 @@ jobs:
 
           context: ./
 
-          file: ./Dockerfile Base/Dockerfile
+          file: Dockerfile
 
           push: true
 
